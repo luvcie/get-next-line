@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/08 22:43:27 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 22:53:35 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -83,7 +83,7 @@ static char	*ft_gatherer(char **main_buffer, char *temp_buffer, int fd)
 	int		bytes_read;
 	char	*temp;
 
-	while (!*main_buffer || !ft_strchr(*main_buffer, '\n'))
+	while (*main_buffer == NULL || ft_strchr(*main_buffer, '\n') == NULL)
 	{
 		bytes_read = read(fd, temp_buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
@@ -95,7 +95,7 @@ static char	*ft_gatherer(char **main_buffer, char *temp_buffer, int fd)
 			break ;
 		temp_buffer[bytes_read] = '\0';
 		temp = ft_gnl_strjoin(*main_buffer, temp_buffer);
-		if (!temp)
+		if (temp == NULL)
 		{
 			*main_buffer = NULL;
 			return (free(temp_buffer), NULL);
@@ -113,9 +113,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	temp_buffer = malloc(BUFFER_SIZE + 1);
-	if (!temp_buffer)
+	if (temp_buffer == NULL)
 		return (ft_cleaner(NULL, &main_buffer));
-	if (!ft_gatherer(&main_buffer, temp_buffer, fd))
+	if (ft_gatherer(&main_buffer, temp_buffer, fd) == NULL)
 		return (NULL);
 	free(temp_buffer);
 	temp_buffer = NULL;
