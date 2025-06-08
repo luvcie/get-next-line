@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/08 21:42:56 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 22:20:16 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -25,7 +25,7 @@ static char	*ft_cleaner(char *line, char **buffer)
 }
 
 // returns current line and saves leftover data
-// if data is beyond lenght, save for the next gnl call
+// if data is beyond lenght, save for the next gnl call with substr.
 // "ft_strlen(*buffer) - len" is the total buff len - already used line
 // calculates how many character leftovers.
 // if total is 30 chars and used 6, 30-6 = 24 characters remain
@@ -47,23 +47,27 @@ static char	*ft_store_leftover(char **buffer, char *line, int len)
 	return (line);
 }
 
+// constructs next line from main_buffer
+// extracts line portion
+// if newline, save leftover for next calls, if no nl, clean.
+// returns formatted line
 static char	*ft_builder(char **buffer)
 {
 	char	*newline_i;
 	char	*line;
 	int		len;
 
-	if (!buffer || !*buffer || !**buffer)
+	if (buffer == NULL || *buffer == NULL || **buffer == NULL)
 		return (ft_cleaner(NULL, buffer));
 	newline_i = ft_strchr(*buffer, '\n');
-	if (newline_i)
+	if (newline_i != NULL)
 		len = newline_i - *buffer + 1;
 	else
 		len = ft_strlen(*buffer);
 	line = ft_gnl_substr(*buffer, 0, len);
-	if (!line)
+	if (line != NULL)
 		return (ft_cleaner(NULL, buffer));
-	if (newline_i)
+	if (newline_i != NULL)
 		return (ft_store_leftover(buffer, line, len));
 	ft_cleaner(NULL, buffer);
 	return (line);
