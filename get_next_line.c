@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/08 22:20:16 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 22:26:59 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -73,6 +73,11 @@ static char	*ft_builder(char **buffer)
 	return (line);
 }
 
+// gathers data in chunks until newline
+// read BUFFER_SIZE bytes from fd into temp_buffer
+// concatenate chunks in main_buffer
+// continue until nl, EOF or error
+// return temp_buffer or NULL
 static char	*ft_gatherer(char **main_buffer, char *temp_buffer, int fd)
 {
 	int		bytes_read;
