@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/08 22:26:59 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 22:43:27 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -57,7 +57,7 @@ static char	*ft_builder(char **buffer)
 	char	*line;
 	int		len;
 
-	if (buffer == NULL || *buffer == NULL || **buffer == NULL)
+	if (buffer == NULL || *buffer == NULL || !**buffer)
 		return (ft_cleaner(NULL, buffer));
 	newline_i = ft_strchr(*buffer, '\n');
 	if (newline_i != NULL)
@@ -65,7 +65,7 @@ static char	*ft_builder(char **buffer)
 	else
 		len = ft_strlen(*buffer);
 	line = ft_gnl_substr(*buffer, 0, len);
-	if (line != NULL)
+	if (line == NULL)
 		return (ft_cleaner(NULL, buffer));
 	if (newline_i != NULL)
 		return (ft_store_leftover(buffer, line, len));
