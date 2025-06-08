@@ -4,3 +4,5 @@ It adds the logic to:
 * Identify line breaks
 * Buffer leftover data
 * Return one complete line at a time
+
+test
