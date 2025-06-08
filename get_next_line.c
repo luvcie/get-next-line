@@ -6,16 +6,17 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/04 02:10:13 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 21:27:20 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
+// frees and sets pointers to NULL
 static char	*ft_cleaner(char *line, char **buffer)
 {
-	if (line)
+	if (line != NULL)
 		free(line);
-	if (buffer && *buffer)
+	if (buffer != NULL && *buffer != NULL)
 	{
 		free(*buffer);
 		*buffer = NULL;
@@ -23,6 +24,8 @@ static char	*ft_cleaner(char *line, char **buffer)
 	return (NULL);
 }
 
+// returns current line and saves leftover data
+// frees buffer if no data remains
 static char	*ft_store_leftover(char **buffer, char *line, int len)
 {
 	char	*temp;
