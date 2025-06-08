@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:51:37 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/05 22:01:03 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 21:43:48 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -47,6 +47,7 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
+// creates new string containing a portion of existing string
 char	*ft_gnl_substr(char const *str, unsigned int start, size_t len)
 {
 	char	*ptr;
