@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/08 21:27:20 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/08 21:42:56 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -25,6 +25,10 @@ static char	*ft_cleaner(char *line, char **buffer)
 }
 
 // returns current line and saves leftover data
+// if data is beyond lenght, save for the next gnl call
+// "ft_strlen(*buffer) - len" is the total buff len - already used line
+// calculates how many character leftovers.
+// if total is 30 chars and used 6, 30-6 = 24 characters remain
 // frees buffer if no data remains
 static char	*ft_store_leftover(char **buffer, char *line, int len)
 {
@@ -33,7 +37,7 @@ static char	*ft_store_leftover(char **buffer, char *line, int len)
 	if (ft_strlen(*buffer) > (size_t)len)
 	{
 		temp = ft_gnl_substr(*buffer, len, ft_strlen(*buffer) - len);
-		if (!temp)
+		if (temp == NULL)
 			return (ft_cleaner(line, buffer));
 		free(*buffer);
 		*buffer = temp;
