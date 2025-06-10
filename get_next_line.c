@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/10 20:17:47 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 22:06:40 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -50,7 +50,7 @@ static char	*ft_store_leftover(char **buffer, char *line, int len)
 // constructs next line from main_buffer
 // extracts line portion
 // if newline, save leftover for next calls, if no nl, clean.
-// returns formatted line
+// returns extracted line or NULL if error
 static char	*ft_builder(char **buffer)
 {
 	char	*newline_i;
