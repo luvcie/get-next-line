@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 00:52:07 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/04 00:52:19 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:51:31 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,11 @@ char	*ft_gnl_strjoin(char *s1, char const *s2)
 	return (free(s1), str);
 }
 
-void	*ft_free_and_zero(char **ptr)
+void	ft_free_and_zero(char **ptr)
 {
 	if (ptr && *ptr)
 	{
 		free(*ptr);
 		*ptr = NULL;
 	}
-	return (NULL);
 }
