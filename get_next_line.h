@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 10:25:13 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/05 20:28:14 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:31:24 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_gnl_substr(char const *str, unsigned int start, size_t len);
 char	*ft_gnl_strjoin(char *s1, char const *s2);
-void	*ft_free_and_zero(char **ptr);
+void	ft_free_and_zero(char **ptr);
 
 #endif
