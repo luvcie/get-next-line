@@ -6,11 +6,12 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 00:52:43 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/04 02:46:27 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 22:03:03 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line_bonus.h"
 
+// frees and sets pointers to NULL to avoid dangling pointers
 static char	*ft_cleaner(char *line, char **buffer)
 {
 	if (line)
@@ -23,6 +24,12 @@ static char	*ft_cleaner(char *line, char **buffer)
 	return (NULL);
 }
 
+// returns current line and saves leftover data
+// if data is beyond lenght, save for the next gnl call with substr
+// "ft_strlen(*buffer) - len" is the total buff len minus already used line
+// calculates how many character leftovers.
+// ex. if total is 30 chars and used 6, 30-6 = 24 characters remain
+// frees buffer if no data remains
 static char	*ft_store_leftover(char **buffer, char *line, int len)
 {
 	char	*temp;
@@ -40,6 +47,10 @@ static char	*ft_store_leftover(char **buffer, char *line, int len)
 	return (line);
 }
 
+// constructs next line from main_buffer
+// extracts line portion
+// if newline, save leftover for next calls, if no nl, clean.
+// returns formatted line
 static char	*ft_builder(char **buffer)
 {
 	char	*newline_i;
@@ -62,6 +73,11 @@ static char	*ft_builder(char **buffer)
 	return (line);
 }
 
+// gathers data in chunks until newline
+// read BUFFER_SIZE bytes from fd into temp_buffer
+// concatenate chunks in main_buffer
+// continue until newline, EOF, or error
+// return temp_buffer or NULL
 static char	*ft_gatherer(char **main_buffer, char *temp_buffer, int fd)
 {
 	int		bytes_read;
@@ -89,6 +105,10 @@ static char	*ft_gatherer(char **main_buffer, char *temp_buffer, int fd)
 	return (temp_buffer);
 }
 
+// allocates temporary buffer for reading chunks
+// gathers data until next lien is found with ft_gatherer
+// extracts and returns the line with ft_builder
+// returns next line with newline or NULL on error or EOF
 char	*get_next_line(int fd)
 {
 	char		*temp_buffer;

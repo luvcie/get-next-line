@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 00:52:07 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/10 21:51:31 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:56:54 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
+// returns new string containing a portion of existing string
 char	*ft_gnl_substr(char const *str, unsigned int start, size_t len)
 {
 	char	*ptr;
@@ -73,6 +74,9 @@ char	*ft_gnl_substr(char const *str, unsigned int start, size_t len)
 	return (ptr[i] = '\0', ptr);
 }
 
+// difference with normal strjoin: automatically frees s1 after copying
+// to prevent leaks while the buffer is accumulating
+// returns concatenated string
 char	*ft_gnl_strjoin(char *s1, char const *s2)
 {
 	char	*str;
@@ -101,6 +105,7 @@ char	*ft_gnl_strjoin(char *s1, char const *s2)
 	return (free(s1), str);
 }
 
+// frees pointer and initializes it to NULL to prevent dangling pointer
 void	ft_free_and_zero(char **ptr)
 {
 	if (ptr && *ptr)
