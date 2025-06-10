@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 00:51:33 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/10 21:51:47 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 22:10:43 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # endif
 
 # ifndef MAX_FD
-#  define MAX_FD 1024
+#  define MAX_FD 4096
 # endif
 
 char	*get_next_line(int fd);
