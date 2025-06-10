@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:58:46 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/06/08 22:53:35 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:17:47 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -105,6 +105,10 @@ static char	*ft_gatherer(char **main_buffer, char *temp_buffer, int fd)
 	return (temp_buffer);
 }
 
+// allocates temporary buffer for reading chunks
+// gathers data until next line is found with ft_gatherer
+// extracts and returns the line with ft_builder
+// returns next line with newline or NULL on error or EOF
 char	*get_next_line(int fd)
 {
 	char		*temp_buffer;
